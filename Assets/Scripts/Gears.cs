@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gears : MonoBehaviour
 {
     public Animator Gear;
-    public bool GearUp;
+    public bool GearUp = false;
     public ControlHandler Handler;
 
     // Start is called before the first frame update
@@ -28,6 +28,17 @@ public class Gears : MonoBehaviour
         {
             Gear.SetBool("isAnimating", false);
         }
+
+        /*
+        if (Input.GetKey(KeyCode.G) && GearUp == true)
+        {
+            Gear.SetBool("isAnimating", true);
+        }
+        else if (Input.GetKey(KeyCode.G) && GearUp == false)
+        {
+            Gear.SetBool("isAnimating", false);
+        }
+        */
     }
 
 }

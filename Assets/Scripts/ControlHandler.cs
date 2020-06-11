@@ -20,19 +20,20 @@ public class ControlHandler : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKey(KeyCode.G))
-        //{
-        //    GearMover();
-        //}
         //byte[] Cmd_Report = new byte[serialPort.BytesToRead];
         //serialPort.Read(Cmd_Report, 0, serialPort.BytesToRead);
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Exit();
+        }
+
 
         char[] tmpDirection = new char[sp.BytesToRead];
         //Debug.Log("BytesToRead: " + tmpDirection.Length);
         sp.Read(tmpDirection, 0, tmpDirection.Length);
         //Debug.Log("tmpDirection value: " + tmpDirection[tmpDirection.Length - 1]);
         ControlValue = tmpDirection[tmpDirection.Length - 1];
-        //Debug.Log("Direction value: " + ControlValue.ToString());
+        Debug.Log("Direction value: " + ControlValue.ToString());
         GearPos(ControlValue);
         LightCheck(ControlValue);
     }
@@ -47,6 +48,11 @@ public class ControlHandler : MonoBehaviour
         return lightValue;
     }
     
+    void Exit()
+    {
+        sp.Close();
+        Application.Quit();
+    }
 
     public void LightCheck(char lightOn)
     {
